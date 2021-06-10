@@ -1,9 +1,17 @@
-package creat;
+package data_system.product;
+
+import data_system.people.Customer;
 
 import java.util.Date;
 
 public class Bill {
-    public Bill() {
+    private static Bill INSTANCE = new Bill();
+
+    public static Bill getBill() {
+        return INSTANCE;
+    }
+
+    private Bill() {
     }
 
     private int idBill;

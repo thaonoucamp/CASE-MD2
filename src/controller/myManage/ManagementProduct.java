@@ -1,11 +1,11 @@
-package controller;
+package controller.myManage;
 
-import creat.Product;
+import data_system.product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagementProduct implements IManagement<Product>{
+public class ManagementProduct implements IManagement<Product> {
     List<Product> productList;
     int idBill;
 
@@ -16,6 +16,10 @@ public class ManagementProduct implements IManagement<Product>{
 
     @Override
     public Product input() {
+        Product newProduct = Product.getProduct();
+
+        System.out.println("Enter the name");
+
         return null;
     }
 
@@ -33,6 +37,11 @@ public class ManagementProduct implements IManagement<Product>{
 
     @Override
     public void sort(List<Product> list) {
+    }
+
+    @Override
+    public void show(List<Product> list) {
+
     }
 
     @Override

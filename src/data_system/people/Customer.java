@@ -1,4 +1,4 @@
-package creat;
+package data_system.people;
 
 public class Customer extends Person {
     private static Customer INSTANCE = new Customer();
@@ -11,6 +11,7 @@ public class Customer extends Person {
     }
 
     private String idCus;
+    private String telephone;
     private String email;
     private long wallet;
 
@@ -20,9 +21,25 @@ public class Customer extends Person {
         this.wallet = wallet;
     }
 
-    public Customer(String name, String age, String gender, String address, String idCus, String email, long wallet) {
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Customer(String idCus, String telephone, String email, long wallet) {
+        this.idCus = idCus;
+        this.telephone = telephone;
+        this.email = email;
+        this.wallet = wallet;
+    }
+
+    public Customer(String name, String age, String gender, String address, String idCus, String telephone, String email, long wallet) {
         super(name, age, gender, address);
         this.idCus = idCus;
+        this.telephone = telephone;
         this.email = email;
         this.wallet = wallet;
     }
@@ -59,8 +76,9 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "idCus='" + idCus + '\'' +
+        return "Customer{" + super.toString() +
+                ", idCus='" + idCus + '\'' +
+                ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", wallet=" + wallet +
                 '}';

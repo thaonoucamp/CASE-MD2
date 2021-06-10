@@ -1,4 +1,4 @@
-package creat;
+package data_system.product;
 
 public class Product {
     private static Product INSTANCE = new Product();

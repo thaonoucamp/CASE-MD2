@@ -1,4 +1,4 @@
-package controller;
+package controller.myManage;
 
 import java.util.List;
 
@@ -12,6 +12,8 @@ public interface IManagement<T> {
     void delete(String object);
 
     void sort(List<T> list);
+
+    void show(List<T> list);
 
     T find(String object);
 
