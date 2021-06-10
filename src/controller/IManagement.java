@@ -5,15 +5,15 @@ import java.util.List;
 public interface IManagement<T> {
     T input();
 
-    List<T> add();
+    void add();
 
-    List<T> edit(List<T> list);
+    void edit(String object);
 
-    List<T> delete(List<T> list);
+    void delete(String object);
 
-    List<T> sort(List<T> list);
+    void sort(List<T> list);
 
-    List<T> find(List<T> list);
+    T find(String object);
 
     void menu();
 }

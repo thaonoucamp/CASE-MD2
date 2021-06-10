@@ -1,11 +1,17 @@
 package creat;
 
 public class Product {
+    private static Product INSTANCE = new Product();
+
+    public static Product getProduct() {
+        return INSTANCE;
+    }
+
     private String name;
     private String firm;
     private long price;
-    private String color;
     private boolean state;
+    private int vote;
 
     public boolean isState() {
         return state;
@@ -15,15 +21,15 @@ public class Product {
         this.state = state;
     }
 
-    public Product(String name, String firm, long price, String color, boolean state) {
+    public Product(String name, String firm, long price, boolean state, int vote) {
         this.name = name;
         this.firm = firm;
         this.price = price;
-        this.color = color;
+        this.vote = vote;
         this.state = state;
     }
 
-    public Product() {
+    private Product() {
         state = false;
     }
 
@@ -51,12 +57,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getColor() {
-        return color;
+    public int getColor() {
+        return vote;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setColor(int color) {
+        this.vote = color;
     }
 
     @Override
@@ -65,8 +71,8 @@ public class Product {
                 "name='" + name + '\'' +
                 ", firm='" + firm + '\'' +
                 ", price=" + price +
-                ", color='" + color + '\'' +
                 ", color='" + state + '\'' +
+                ", color='" + vote + '\'' +
                 '}';
     }
 }

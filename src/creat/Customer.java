@@ -1,9 +1,18 @@
 package creat;
 
-public class Customer extends Person{
+public class Customer extends Person {
+    private static Customer INSTANCE = new Customer();
+
+    private Customer() {
+    }
+
+    public static Customer getInstance() {
+        return INSTANCE;
+    }
+
     private String idCus;
     private String email;
-    private long wallet = 1000000L;
+    private long wallet;
 
     public Customer(String idCus, String email, long wallet) {
         this.idCus = idCus;
@@ -30,9 +39,6 @@ public class Customer extends Person{
     public Customer(String idCus, long wallet) {
         this.idCus = idCus;
         this.wallet = wallet;
-    }
-
-    public Customer() {
     }
 
     public String getIdCus() {

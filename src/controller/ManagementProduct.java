@@ -20,27 +20,23 @@ public class ManagementProduct implements IManagement<Product>{
     }
 
     @Override
-    public List<Product> add() {
-        return null;
+    public void add() {
     }
 
     @Override
-    public List<Product> edit(List<Product> list) {
-        return null;
+    public void edit(String name) {
     }
 
     @Override
-    public List<Product> delete(List<Product> list) {
-        return null;
+    public void delete(String name) {
     }
 
     @Override
-    public List<Product> sort(List<Product> list) {
-        return null;
+    public void sort(List<Product> list) {
     }
 
     @Override
-    public List<Product> find(List<Product> list) {
+    public Product find(String name) {
         return null;
     }
 
