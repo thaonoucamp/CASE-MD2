@@ -14,7 +14,6 @@ public class ManagementStaff implements IManagement<Staff> {
         staffList = new ArrayList<>();
     }
 
-    @Override
     public Staff input() {
         Staff newStaff = Staff.getStaff();
 
@@ -101,10 +100,9 @@ public class ManagementStaff implements IManagement<Staff> {
     }
 
     @Override
-    public void find() {
+    public void viewProduct() {
     }
 
-    @Override
     public void menu() {
 
     }

@@ -3,9 +3,7 @@ package controller.myManage;
 import java.util.List;
 
 public interface IManagement<T> {
-    T input();
-
-    void add();
+    void add(T t);
 
     void edit();
 
@@ -15,7 +13,6 @@ public interface IManagement<T> {
 
     void show();
 
-    void find();
+    void viewProduct();
 
-    void menu();
 }

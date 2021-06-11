@@ -6,15 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagementInfoCus implements IManagement<Customer> {
+public class ManagementInfoBill implements IManagement<Customer> {
     private List<Customer> customerList;
     transient Scanner sc = new Scanner(System.in);
 
-    public ManagementInfoCus() {
+    public ManagementInfoBill() {
         customerList = new ArrayList<>();
     }
 
-    @Override
     public Customer input() {
         Customer newCus = Customer.getInstance();
 
@@ -119,10 +118,9 @@ public class ManagementInfoCus implements IManagement<Customer> {
     }
 
     @Override
-    public void find() {
+    public void viewProduct() {
     }
 
-    @Override
     public void menu() {
 
     }

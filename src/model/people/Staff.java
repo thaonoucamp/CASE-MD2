@@ -12,7 +12,6 @@ public class Staff extends Person {
     public String toString() {
         return "Staff{" + super.toString() +
                 ", idStaff='" + idStaff + '\'' +
-                ", kip='" + kip + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", bonus=" + bonus +
@@ -20,10 +19,9 @@ public class Staff extends Person {
                 '}';
     }
 
-    public Staff(String idStaff, String name, String age, String gender, String address, String kip, String telephone, String email, long bonus, long rice) {
+    public Staff(String idStaff, String name, String age, String gender, String address, String telephone, String email, long bonus, long rice) {
         super(name, age, gender, address);
         this.idStaff = idStaff;
-        this.kip = kip;
         this.telephone = telephone;
         this.email = email;
         this.bonus = bonus;
@@ -52,15 +50,6 @@ public class Staff extends Person {
 
     private String idStaff;
 
-    public String getKip() {
-        return kip;
-    }
-
-    public void setKip(String kip) {
-        this.kip = kip;
-    }
-
-    private String kip;
     private String telephone;
     private String email;
     private long bonus;

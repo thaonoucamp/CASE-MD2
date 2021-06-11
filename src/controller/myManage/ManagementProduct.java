@@ -1,15 +1,14 @@
 package controller.myManage;
 
+import model.people.Customer;
 import model.product.Product;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ManagementProduct implements IManagement<Product> {
     transient Scanner sc = new Scanner(System.in);
     private List<Product> productList;
+    ManagementCart managementCart = new ManagementCart();
 
     public ManagementProduct() {
         productList = new ArrayList<>();
@@ -19,7 +18,6 @@ public class ManagementProduct implements IManagement<Product> {
         return productList;
     }
 
-    @Override
     public Product input() {
         Product newProduct = Product.getProduct();
 
@@ -95,24 +93,31 @@ public class ManagementProduct implements IManagement<Product> {
     }
 
     @Override
-    public void find() {
+    public void viewProduct() {
         int choice;
-        System.out.println("1 -> find by the price" +
-                "\n2 -> find by the firm");
-        choice = Integer.parseInt(sc.nextLine());
-        switch (choice) {
-            case 1 -> findByPrice();
-            case 2 -> findByFirm();
-            case 3 -> findByName();
-        }
+        do {
+            System.out.println("1 -> find by the price" +
+                    "\n2 -> find by the firm" +
+                    "\n3 -> find by the name");
+            choice = Integer.parseInt(sc.nextLine());
+            switch (choice) {
+                case 1 -> findByPrice();
+                case 2 -> findByFirm();
+                case 3 -> findByName();
+            }
+        } while (choice > 4 && choice < 1);
     }
 
-    private void findByName() {
+    public void findByName() {
+        ManagementCart managementCart = new ManagementCart();
         int index = getIndex(this.getProductList());
+        Product product = null;
         for (int i = 0; i < this.getProductList().size(); i++) {
             System.out.println(this.getProductList().get(index));
+            product = this.getProductList().get(index);
+            break;
         }
-        paid();
+        optionOfCus(product);
     }
 
     public void findByFirm() {
@@ -127,7 +132,6 @@ public class ManagementProduct implements IManagement<Product> {
             }
         }
         showProduct(listFirm);
-        paid();
     }
 
 
@@ -137,29 +141,39 @@ public class ManagementProduct implements IManagement<Product> {
         System.out.println("Enter the firm");
         long price = Long.parseLong(sc.nextLine());
 
+        Product product;
         for (int i = 0; i < this.productList.size(); i++) {
             if (productList.get(i).getPrice() == price) {
-                listPrice.add(productList.get(i));
+                product = this.productList.get(i);
+                listPrice.add(product);
             }
         }
         showProduct(listPrice);
-        paid();
     }
 
-    public void paid() {
+    public void optionOfCus(Product product) {
         int choice;
         System.out.println("1 -> add to cart" +
-                "2 -> pay for product");
+                "\n2 -> pay for product");
         choice = Integer.parseInt(sc.nextLine());
         switch (choice) {
-            case 1 -> addToCart();
-            case 2 -> payForProduct();
+            case 1 -> managementCart.add(product);
+            case 2 -> payForProduct(managementCart.getCart());
         }
     }
 
-    private void addToCart() {
-
+    private void payForProduct(List<Product> list) {
+        long total = 0;
+        for (Product p:
+             list) {
+            total += p.getPrice();
+        }
+        Customer customer = Customer.getInstance();
+        Product product = Product.getProduct();
+        customer.setWallet(customer.getWallet() - product.getPrice());
+        managementCart.getCart().remove(product);
     }
+
     public void showProduct(List<Product> list) {
         for (Product pro :
                 list) {
@@ -167,7 +181,6 @@ public class ManagementProduct implements IManagement<Product> {
         }
     }
 
-    @Override
     public void menu() {
 
     }

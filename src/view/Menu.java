@@ -1,14 +1,15 @@
 package view;
 
-import controller.myManage.ManagementInfoCus;
+import controller.myManage.ManagementLogin;
+import controller.myManage.ManagementInfoBill;
 import controller.myManage.ManagementProduct;
 
 import java.util.Scanner;
 
 public class Menu {
     transient Scanner sc = new Scanner(System.in);
-    Login login = new Login();
-    ManagementInfoCus managementInfoCus = new ManagementInfoCus();
+    ManagementLogin managementLogin = new ManagementLogin();
+    ManagementInfoBill managementInfoBill = new ManagementInfoBill();
     ManagementProduct managementProduct = new ManagementProduct();
 
     public void getLogin() {
@@ -16,15 +17,15 @@ public class Menu {
         do {
             System.out.println("Who are you ?" +
                     "\n1 -> Staff" +
-                    "\n2 -> Customer" +
-                    "\n3 -> Customer potential" +
+                    "\n2 -> View Product" +
+                    "\n3 -> Registration " +
                     "\n0 -> Exit"
             );
             choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
-                case 1 -> login.checkAccount();
-                case 2 -> managementInfoCus.add();
-                case 3 -> managementProduct.find();
+                case 1 -> managementLogin.checkAccountStaff();
+                case 2 -> managementProduct.viewProduct();
+                case 3 -> managementLogin.addAccount();
                 case 0 -> System.exit(0);
             }
         } while (choice < 4 && choice > -1);

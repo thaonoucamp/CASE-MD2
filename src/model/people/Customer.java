@@ -81,7 +81,6 @@ public class Customer extends Person {
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", wallet=" + wallet +
-                ", cart=" + cart +
                 '}';
     }
 }
