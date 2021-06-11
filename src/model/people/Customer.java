@@ -1,9 +1,15 @@
-package data_system.people;
+package model.people;
+
+import model.product.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer extends Person {
     private static Customer INSTANCE = new Customer();
 
     private Customer() {
+        this.wallet = 1000000000;
     }
 
     public static Customer getInstance() {
@@ -52,12 +58,6 @@ public class Customer extends Person {
         this.email = email;
     }
 
-
-    public Customer(String idCus, long wallet) {
-        this.idCus = idCus;
-        this.wallet = wallet;
-    }
-
     public String getIdCus() {
         return idCus;
     }
@@ -81,6 +81,7 @@ public class Customer extends Person {
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", wallet=" + wallet +
+                ", cart=" + cart +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package data_system.product;
+package model.product;
 
 public class Product {
     private static Product INSTANCE = new Product();
@@ -30,7 +30,8 @@ public class Product {
     }
 
     private Product() {
-        state = false;
+       this.state = false;
+       this.vote = 1;
     }
 
     public String getName() {

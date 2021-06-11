@@ -1,4 +1,4 @@
-package data_system.factory;
+package model.factory;
 
 public class Samsung implements IFirm {
 

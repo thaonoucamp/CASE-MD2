@@ -1,6 +1,6 @@
 package controller.myManage;
 
-import data_system.people.Staff;
+import model.people.Staff;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,28 +81,27 @@ public class ManagementStaff implements IManagement<Staff> {
     }
 
     @Override
-    public void edit(String object) {
+    public void edit() {
 
     }
 
     @Override
-    public void delete(String object) {
+    public void delete() {
 
     }
 
     @Override
-    public void sort(List<Staff> list) {
+    public void sort() {
 
     }
 
     @Override
-    public void show(List<Staff> list) {
+    public void show() {
 
     }
 
     @Override
-    public Staff find(String object) {
-        return null;
+    public void find() {
     }
 
     @Override

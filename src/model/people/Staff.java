@@ -1,7 +1,12 @@
-package data_system.people;
+package model.people;
 
 public class Staff extends Person {
     private static Staff INSTANCE = new Staff();
+    private final long RICE_BASE = 3000000;
+
+    public long getRICE_BASE() {
+        return RICE_BASE;
+    }
 
     @Override
     public String toString() {
@@ -62,6 +67,7 @@ public class Staff extends Person {
     private long rice;
 
     private Staff() {
+        this.rice = RICE_BASE;
     }
 
     public Staff(String name, String age, String gender, String address) {

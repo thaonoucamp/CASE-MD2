@@ -7,15 +7,15 @@ public interface IManagement<T> {
 
     void add();
 
-    void edit(String object);
+    void edit();
 
-    void delete(String object);
+    void delete();
 
-    void sort(List<T> list);
+    void sort();
 
-    void show(List<T> list);
+    void show();
 
-    T find(String object);
+    void find();
 
     void menu();
 }

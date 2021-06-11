@@ -1,4 +1,4 @@
-package data_system.factory;
+package model.factory;
 
 public class Iphone implements IFirm{
     private static Iphone INSTANCE = new Iphone();

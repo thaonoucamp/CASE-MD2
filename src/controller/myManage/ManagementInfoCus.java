@@ -1,6 +1,6 @@
 package controller.myManage;
 
-import data_system.people.Customer;
+import model.people.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,17 +62,6 @@ public class ManagementInfoCus implements IManagement<Customer> {
             }
         }
 
-        System.out.println("Enter the money by form [1.000.000.000 ]");
-        String wallet = sc.nextLine();
-        while (true) {
-            if (Validate.validate(Validate.REGEX_WALLET, wallet)) {
-                newCus.setWallet(Long.parseLong(wallet));
-                break;
-            } else {
-                System.err.println("Enter be right with regex");
-            }
-        }
-
         System.out.println("Enter the telephone by form [0983.456.789]");
         String telephone = sc.nextLine();
         while (true) {
@@ -113,25 +102,24 @@ public class ManagementInfoCus implements IManagement<Customer> {
     }
 
     @Override
-    public void edit(String customer) {
+    public void edit() {
     }
 
     @Override
-    public void delete(String customer) {
+    public void delete() {
     }
 
     @Override
-    public void sort(List<Customer> list) {
+    public void sort() {
     }
 
     @Override
-    public void show(List<Customer> list) {
+    public void show() {
 
     }
 
     @Override
-    public Customer find(String customer) {
-        return null;
+    public void find() {
     }
 
     @Override

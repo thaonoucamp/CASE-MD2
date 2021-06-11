@@ -1,7 +1,7 @@
-package data_system.factory;
+package model.factory;
 
 public class LogoFactory {
-    public IFirm getFirm(String name) {
+    public static IFirm getFirm(String name) {
         if (name == null) {
             return Iphone.getInstance();
         }

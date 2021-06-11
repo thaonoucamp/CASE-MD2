@@ -1,4 +1,4 @@
-package data_system.people;
+package model.people;
 
 import java.io.Serializable;
 

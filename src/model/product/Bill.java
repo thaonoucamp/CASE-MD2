@@ -1,6 +1,6 @@
-package data_system.product;
+package model.product;
 
-import data_system.people.Customer;
+import model.people.Customer;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package data_system.product;
+package model.product;
 
 public class VoteProduct {
     private int one;

@@ -1,4 +1,4 @@
-package data_system.factory;
+package model.factory;
 
 public interface IFirm{
     String printLogo(String content);
