@@ -13,6 +13,4 @@ public interface IManagement<T> {
 
     void show();
 
-    void viewProduct();
-
 }
