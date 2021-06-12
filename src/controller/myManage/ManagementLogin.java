@@ -47,7 +47,7 @@ public class ManagementLogin {
         System.out.println("Enter the account");
         newAccount.setAccount(sc.nextLine());
 
-        System.out.println("Enter the account");
+        System.out.println("Enter the password");
         newAccount.setPassword(sc.nextLine());
 
         return newAccount;
@@ -55,7 +55,7 @@ public class ManagementLogin {
 
     public boolean checkAccountCus(Account account) {
         account = registration();
-        for (int i = 0; i < this.getAccountList().size(); i++) {
+        for (int i = 0; i <= this.getAccountList().size(); i++) {
             if (!account.getAccount().equalsIgnoreCase(this.getAccountList().get(i).getAccount())) {
                 return true;
             } else {
@@ -63,19 +63,5 @@ public class ManagementLogin {
             }
         }
         return false;
-    }
-
-    public void addAccount() {
-        Account account = registration();
-        checkAccountCus(account);
-        while (true) {
-            if (checkAccountCus(account)) {
-                accountList.add(account);
-                System.out.println("Registration success !");
-                break;
-            } else {
-                System.err.println("The account is duplicate !");
-            }
-        }
     }
 }

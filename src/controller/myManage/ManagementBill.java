@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagementInfoBill implements IManagement<Customer> {
+public class ManagementBill implements IManagement<Customer> {
     private List<Customer> customerList;
     transient Scanner sc = new Scanner(System.in);
 
-    public ManagementInfoBill() {
+    public ManagementBill() {
         customerList = new ArrayList<>();
     }
 
@@ -97,18 +97,20 @@ public class ManagementInfoBill implements IManagement<Customer> {
     }
 
     @Override
-    public void add() {
+    public void add(Customer customer) {
+
     }
 
     @Override
-    public void edit() {
+    public void edit(String name) {
+
     }
 
     @Override
-    public void delete() {
+    public void delete(String name) {
+
     }
 
-    @Override
     public void sort() {
     }
 
@@ -117,9 +119,6 @@ public class ManagementInfoBill implements IManagement<Customer> {
 
     }
 
-    @Override
-    public void viewProduct() {
-    }
 
     public void menu() {
 

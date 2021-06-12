@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class ManagementStaff implements IManagement<Staff> {
     transient Scanner sc = new Scanner(System.in);
+    Staff staff = null;
     List<Staff> staffList;
 
     public ManagementStaff() {
@@ -60,50 +61,26 @@ public class ManagementStaff implements IManagement<Staff> {
                 System.err.println("Enter be right with regex");
             }
         }
-
-        System.out.println("Enter the kip by form [AM|PM]");
-        String kip = sc.nextLine();
-        while (true) {
-            if (Validate.validate(Validate.REGEX_KIP, kip)) {
-                newStaff.setKip((kip));
-                break;
-            } else {
-                System.err.println("Enter be right with regex");
-            }
-        }
-        return null;
+        return newStaff;
     }
 
     @Override
-    public void add() {
+    public void add(Staff staff) {
 
     }
 
     @Override
-    public void edit() {
+    public void edit(String name) {
 
     }
 
     @Override
-    public void delete() {
-
-    }
-
-    @Override
-    public void sort() {
+    public void delete(String name) {
 
     }
 
     @Override
     public void show() {
-
-    }
-
-    @Override
-    public void viewProduct() {
-    }
-
-    public void menu() {
 
     }
 }

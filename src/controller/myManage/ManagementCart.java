@@ -17,6 +17,7 @@ public class ManagementCart implements IManagement<Product> {
         cart = new ArrayList<>();
     }
 
+
     public void add(Product product) {
         this.cart.add(product);
         System.out.println("The product has added the Cart");
@@ -24,17 +25,12 @@ public class ManagementCart implements IManagement<Product> {
     }
 
     @Override
-    public void edit() {
+    public void edit(String name) {
 
     }
 
     @Override
-    public void delete() {
-
-    }
-
-    @Override
-    public void sort() {
+    public void delete(String name) {
 
     }
 
@@ -44,11 +40,6 @@ public class ManagementCart implements IManagement<Product> {
         while (iterator.hasNext()){
             System.out.println(iterator.next());
         }
-    }
-
-    @Override
-    public void viewProduct() {
-
     }
 
     public void menu() {

@@ -3,13 +3,12 @@ package controller.myManage;
 import java.util.List;
 
 public interface IManagement<T> {
+
     void add(T t);
 
-    void edit();
+    void edit(String name);
 
-    void delete();
-
-    void sort();
+    void delete(String name);
 
     void show();
 
