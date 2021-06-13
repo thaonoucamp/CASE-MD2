@@ -1,6 +1,7 @@
 package model.product;
 
 import model.people.Customer;
+import model.people.Staff;
 
 import java.util.Date;
 
@@ -12,28 +13,42 @@ public class Bill {
     }
 
     private Bill() {
+        idBill++;
     }
 
-    private int idBill;
+    private int idBill = 0;
     private Customer customer;
     private Product product;
+    private Staff staff;
     private int quantity;
     private long total;
 
-    public Bill(int idBill, Customer customer, Product product, Date date, int quantity, long total) {
-        this.idBill = idBill;
+    public Bill(Customer customer, Product product, Staff staff, int quantity, long total) {
         this.customer = customer;
         this.product = product;
+        this.staff = staff;
         this.quantity = quantity;
         this.total = total;
     }
 
-    public int getIdBill() {
-        return idBill;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setIdBill(int idBill) {
-        this.idBill = idBill;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getIdBill() {
+        return idBill;
     }
 
     public Product getProduct() {
@@ -66,7 +81,9 @@ public class Bill {
                 "idBill=" + idBill +
                 ", product=" + product +
                 ", customer=" + customer +
+                ", quantity=" + quantity +
                 ", total=" + total +
+                ", staff=" + staff +
                 '}';
     }
 }

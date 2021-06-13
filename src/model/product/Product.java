@@ -10,36 +10,12 @@ public class Product {
     private String name;
     private String firm;
     private long price;
-    private boolean state;
-    private int vote;
 
-    public boolean isState() {
-        return state;
-    }
 
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
-    public Product(String name, String firm, long price, boolean state, int vote) {
+    public Product(String name, String firm, long price) {
         this.name = name;
         this.firm = firm;
         this.price = price;
-        this.vote = vote;
-        this.state = state;
-    }
-
-    private Product() {
-       this.state = false;
-       this.vote = 1;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getFirm() {
@@ -50,6 +26,17 @@ public class Product {
         this.firm = firm;
     }
 
+    private Product() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public long getPrice() {
         return price;
     }
@@ -58,22 +45,12 @@ public class Product {
         this.price = price;
     }
 
-    public int getColor() {
-        return vote;
-    }
-
-    public void setColor(int color) {
-        this.vote = color;
-    }
-
     @Override
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
                 ", firm='" + firm + '\'' +
                 ", price=" + price +
-                ", color='" + state + '\'' +
-                ", color='" + vote + '\'' +
                 '}';
     }
 }

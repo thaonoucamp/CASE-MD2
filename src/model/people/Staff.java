@@ -19,8 +19,8 @@ public class Staff extends Person {
                 '}';
     }
 
-    public Staff(String idStaff, String name, String age, String gender, String address, String telephone, String email, long bonus, long rice) {
-        super(name, age, gender, address);
+    public Staff(String idStaff, String name, String age, String gender, String telephone, String email, long bonus, long rice) {
+        super(name, age, gender);
         this.idStaff = idStaff;
         this.telephone = telephone;
         this.email = email;
@@ -59,8 +59,8 @@ public class Staff extends Person {
         this.rice = RICE_BASE;
     }
 
-    public Staff(String name, String age, String gender, String address) {
-        super(name, age, gender, address);
+    public Staff(String name, String age, String gender) {
+        super(name, age, gender);
     }
 
     public String getIdStaff() {

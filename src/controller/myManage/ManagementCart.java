@@ -31,7 +31,12 @@ public class ManagementCart implements IManagement<Product> {
 
     @Override
     public void delete(String name) {
-
+        int index = 0;
+        for (int i = 0; i < this.getCart().size(); i++) {
+            this.getCart().remove(index);
+            System.out.println("Paid success...Thanks !");
+            break;
+        }
     }
 
     @Override

@@ -8,10 +8,11 @@ import java.util.*;
 public class ManagementProduct implements IManagement<Product> {
     transient Scanner sc = new Scanner(System.in);
     private List<Product> productList;
-    ManagementCart managementCart = new ManagementCart();
 
     public ManagementProduct() {
         productList = new ArrayList<>();
+        productList.add(new Product("Iphone X", "Apple", 10));
+        productList.add(new Product("Galaxy Fold", "Sam sung",15));
     }
 
     public List<Product> getProductList() {
@@ -41,22 +42,14 @@ public class ManagementProduct implements IManagement<Product> {
             System.err.println("Enter be right with regex");
         }
 
-
-        while (true) {
-            System.out.println("Enter the firm by form [Apple]");
-            String firm = sc.nextLine();
-            if (Validate.validate(Validate.REGEX_ADDRESS, firm)) {
-                newProduct.setFirm(firm);
-                break;
-            }
-            System.err.println("Enter be right with regex");
-        }
         return null;
     }
 
     @Override
     public void add(Product product) {
-
+        for (int i = 0; i < this.getProductList().size(); i++) {
+            this.getProductList().add(product);
+        }
     }
 
     @Override

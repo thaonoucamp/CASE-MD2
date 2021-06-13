@@ -27,8 +27,8 @@ public class Customer extends Person {
         this.cart = cart;
     }
 
-    public Customer(String name, String age, String gender, String address, String email, long wallet, Account account, Cart cart) {
-        super(name, age, gender, address);
+    public Customer(String name, String age, String gender, String email, long wallet, Account account, Cart cart) {
+        super(name, age, gender);
         this.email = email;
         this.wallet = wallet;
         this.account = account;

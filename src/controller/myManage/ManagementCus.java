@@ -2,26 +2,23 @@ package controller.myManage;
 
 import model.people.Customer;
 import model.product.Account;
+import model.product.Cart;
+import model.product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagementLogin implements IManagement<Customer> {
+public class ManagementCus implements IManagement<Customer> {
     transient Scanner sc = new Scanner(System.in);
-    private String[] admin = {"admin", "123456"};
-    private List<Customer> accountList;
+    private List<Customer> customerList;
 
-    public String[] getAdmin() {
-        return admin;
+    public List<Customer> getCustomerList() {
+        return customerList;
     }
 
-    public List<Customer> getAccountList() {
-        return accountList;
-    }
-
-    public ManagementLogin() {
-        accountList = new ArrayList<>();
+    public ManagementCus() {
+        customerList = new ArrayList<>();
     }
 
     public Customer inputInfoCus() {
@@ -95,7 +92,8 @@ public class ManagementLogin implements IManagement<Customer> {
 
     @Override
     public void add(Customer customer) {
-
+        this.getCustomerList().add(customer);
+        System.out.println("To registration has was the success !");
     }
 
     @Override

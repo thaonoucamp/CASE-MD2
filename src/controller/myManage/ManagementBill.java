@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagementBill implements IManagement<Customer> {
+public class ManagementBill implements IManagement<Bill> {
     transient Scanner sc = new Scanner(System.in);
     private List<Bill> billList;
 
@@ -17,7 +17,7 @@ public class ManagementBill implements IManagement<Customer> {
 
 
     @Override
-    public void add(Customer customer) {
+    public void add(Bill bill) {
 
     }
 

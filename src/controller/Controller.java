@@ -11,14 +11,14 @@ import java.util.Scanner;
 
 public class Controller {
     transient Scanner sc = new Scanner(System.in);
-    private ManagementCart cart;
+    private ManagementCart managementCart;
     private ManagementProduct managementProduct;
     private ManagementStaff managementStaff;
-    private ManagementLogin managementLogin;
+    private ManagementCus managementCus;
     private ManagementBill managementBill;
 
-    public ManagementCart getCart() {
-        return cart;
+    public ManagementCart getManagementCart() {
+        return managementCart;
     }
 
     public ManagementProduct getManagementProduct() {
@@ -29,8 +29,8 @@ public class Controller {
         return managementStaff;
     }
 
-    public ManagementLogin getManagementLogin() {
-        return managementLogin;
+    public ManagementCus getManagementCus() {
+        return managementCus;
     }
 
     public ManagementBill getManagementBill() {
@@ -38,61 +38,45 @@ public class Controller {
     }
 
     public Controller() {
-        cart = new ManagementCart();
+        managementCart = new ManagementCart();
         managementProduct = new ManagementProduct();
         managementStaff = new ManagementStaff();
-        managementLogin = new ManagementLogin();
+        managementCus = new ManagementCus();
         managementBill = new ManagementBill();
-        cart = new ManagementCart();
+        managementCart = new ManagementCart();
     }
-
 
     public int getIndex(List<Product> list) {
-        System.out.println("Enter the name want to find");
-        String name = sc.nextLine();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getName().equalsIgnoreCase(name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public void addAccount(model.people.Customer customer) {
-        Customer account = this.registration();
-        if (this.getManagementLogin().getAccountList().size() == 0) {
-            this.getManagementLogin().getAccountList().add(account);
-            System.out.println("Registration success !");
-            this.menu(customer);
-        } else {
-            this.checkAccountCus(account);
-            while (true) {
-                if (this.checkAccountCus(account)) {
-                    this.getManagementLogin().getAccountList().add(account);
-                    System.out.println("Registration success !");
-                    this.menu(customer);
-                    break;
-                } else {
-                    System.err.println("The account is duplicate !");
+        do {
+            System.out.println("Enter the name want to find");
+            String name = sc.nextLine();
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getName().equalsIgnoreCase(name)) {
+                    return i;
                 }
             }
-        }
+            System.err.println("Not find the product !");
+            return -1;
+        } while (true);
     }
 
     public void viewProduct(model.people.Customer customer) {
         int choice;
         do {
             System.out.println("-----VIEW PRODUCT-----" +
-                    "\n1 -> find by the price" +
-                    "\n2 -> find by the firm" +
-                    "\n3 -> find by the name");
+                    "\n1 -> Find by the price" +
+                    "\n2 -> Find by the firm" +
+                    "\n3 -> Find by the name" +
+                    "\n4 -> Previous to the Menu"
+            );
             choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1 -> findByPrice(customer);
                 case 2 -> findByFirm(customer);
                 case 3 -> findByName(customer);
+                case 4 -> this.menu(customer);
             }
-        } while (choice > 4 && choice < 1);
+        } while (choice != -1);
     }
 
     public void findByName(model.people.Customer customer) {
@@ -108,13 +92,15 @@ public class Controller {
 
     public void findByFirm(model.people.Customer customer) {
         List<Product> listFirm = new ArrayList<>();
+        Product product;
 
         System.out.println("Enter the firm");
         String firm = sc.nextLine();
 
         for (int i = 0; i < this.managementProduct.getProductList().size(); i++) {
             if (managementProduct.getProductList().get(i).getFirm().equalsIgnoreCase(firm)) {
-                listFirm.add(managementProduct.getProductList().get(i));
+                product = managementProduct.getProductList().get(i);
+                listFirm.add(product);
             }
         }
         showOneProduct(listFirm);
@@ -143,31 +129,37 @@ public class Controller {
         int choice = 0;
         System.out.println("-----OPTION 2------" +
                 "\n1 -> Find by name" +
-                "\n2 -> Previous to view product all");
+                "\n2 -> Previous to view product all" +
+                "\n3 -> Previous to the Menu"
+        );
         choice = Integer.parseInt(sc.nextLine());
         switch (choice) {
             case 1 -> findByName(customer);
             case 2 -> viewProduct(customer);
+            case 3 -> this.menu(customer);
         }
     }
 
     public void optionOfCus(model.people.Customer customer, Product product) {
         int choice;
         System.out.println("-----OPTION 1-----" +
-                "\n1 -> add to cart" +
-                "\n2 -> pay for product");
+                "\n1 -> Add to cart" +
+                "\n2 -> Previous view product all" +
+                "\n3 -> Previous to the Menu"
+        );
         choice = Integer.parseInt(sc.nextLine());
         switch (choice) {
-            case 1 -> this.cart.add(product);
-            case 2 -> payForProduct(customer, product);
+            case 1 -> this.managementCart.add(product);
+            case 2 -> this.viewProduct(customer);
+            case 3 -> this.menu(customer);
         }
     }
 
-    private void payForProduct(model.people.Customer customer, Product product) {
-        long total = 0;
-        total = customer.getWallet() - product.getPrice();
+    private void payForProduct(Customer customer) {
+        int index = this.getIndex(this.managementCart.getCart());
+        Product product = this.managementCart.getCart().get(index);
         customer.setWallet(customer.getWallet() - product.getPrice());
-        this.cart.getCart().remove(product);
+        this.managementCart.getCart().remove(product);
     }
 
     public void showOneProduct(List<Product> list) {
@@ -177,60 +169,62 @@ public class Controller {
         }
     }
 
-    public void checkAccountStaff() {
-        boolean check = true;
-        do {
-            String[] login = new String[2];
-            System.out.print("Enter the account : ");
-            String ac = sc.nextLine();
-            System.out.print("Enter the password : ");
-            String pw = sc.nextLine();
-
-            login[0] = ac;
-            login[1] = pw;
-
-            for (int i = 0; i < login.length; i++) {
-                if (login[i].equalsIgnoreCase(this.getManagementLogin().getAdmin()[i])) {
-                    check = false;
-                } else {
-                    System.err.println("The account or password is not right");
-                }
+    public void login(Customer customer) {
+        while (true) {
+            if (this.checkAccountCus(customer)) {
+                break;
             }
-        } while (check);
-    }
-
-    public Customer registration() {
-        Customer newCustomer = this.getManagementLogin().inputInfoCus();
-        return newCustomer;
+        }
     }
 
     public boolean checkAccountCus(Customer customer) {
-        customer = registration();
-        for (int i = 0; i <= this.getManagementLogin().getAccountList().size(); i++) {
-            if (!customer.getAccount().getPhone().equalsIgnoreCase(this.getManagementLogin().getAccountList().get(i).getAccount().getPhone())) {
+        Account newAccount = new Account();
+
+        System.out.print("Enter the account : ");
+        String ac = sc.nextLine();
+        newAccount.setPhone(ac);
+
+        System.out.print("Enter the password : ");
+        String pw = sc.nextLine();
+        newAccount.setPassword(pw);
+
+        for (int i = 0; i < this.getManagementCus().getCustomerList().size(); i++) {
+            String account = this.getManagementCus().getCustomerList().get(i).getAccount().getPhone();
+            String pass = this.getManagementCus().getCustomerList().get(i).getAccount().getPassword();
+            String name = this.getManagementCus().getCustomerList().get(i).getName();
+            customer = this.getManagementCus().getCustomerList().get(i);
+            if (account.equalsIgnoreCase(ac) && pass.equalsIgnoreCase(pw)) {
+                System.out.println("Welcome to the " + name + " !");
                 return true;
-            } else {
-                return false;
             }
         }
+        System.out.println("The account or password is not right !");
         return false;
     }
 
-    public void menu(model.people.Customer customer) {
-        customer = null;
+    public Customer registration() {
+        Customer newCustomer = this.getManagementCus().inputInfoCus();
+        return newCustomer;
+    }
+
+    public void menu(Customer customer) {
         int choice;
         do {
             System.out.println("-----MENU-----" +
                     "\n1 -> Login" +
                     "\n2 -> View Product" +
                     "\n3 -> Registration " +
+                    "\n4 -> View the Cart " +
+                    "\n5 -> Pay for Product " +
                     "\n0 -> Exit"
             );
             choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
-                case 1 -> this.checkAccountStaff();
+                case 1 -> this.login(customer);
                 case 2 -> this.viewProduct(customer);
-                case 3 -> this.addAccount(customer);
+                case 3 -> this.getManagementCus().add(this.getManagementCus().inputInfoCus());
+                case 4 -> this.getManagementCart().show();
+                case 5 -> this.payForProduct(customer);
                 case 0 -> System.exit(0);
             }
         } while (choice != -1);
