@@ -1,10 +1,12 @@
 package controller;
 
+import controller.myFile.FileIO;
 import controller.myManage.*;
 import model.people.Customer;
 import model.product.Account;
 import model.product.Product;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,6 +18,7 @@ public class Controller {
     private ManagementStaff managementStaff;
     private ManagementCus managementCus;
     private ManagementBill managementBill;
+    FileIO fileController = new FileIO();
 
     public ManagementCart getManagementCart() {
         return managementCart;
@@ -60,7 +63,7 @@ public class Controller {
         } while (true);
     }
 
-    public void viewProduct(model.people.Customer customer) {
+    public void viewProduct(model.people.Customer customer) throws IOException {
         int choice;
         do {
             System.out.println("-----VIEW PRODUCT-----" +
@@ -79,7 +82,7 @@ public class Controller {
         } while (choice != -1);
     }
 
-    public void findByName(model.people.Customer customer) {
+    public void findByName(model.people.Customer customer) throws IOException {
         Product product = null;
         int index = getIndex(this.managementProduct.getProductList());
         for (int i = 0; i < this.managementProduct.getProductList().size(); i++) {
@@ -90,7 +93,7 @@ public class Controller {
         optionOfCus(customer, product);
     }
 
-    public void findByFirm(model.people.Customer customer) {
+    public void findByFirm(model.people.Customer customer) throws IOException {
         List<Product> listFirm = new ArrayList<>();
         Product product;
 
@@ -108,7 +111,7 @@ public class Controller {
     }
 
 
-    public void findByPrice(model.people.Customer customer) {
+    public void findByPrice(model.people.Customer customer) throws IOException {
         List<Product> listPrice = new ArrayList<>();
 
         System.out.println("Enter the price");
@@ -125,7 +128,7 @@ public class Controller {
         optionForFind(customer);
     }
 
-    private void optionForFind(model.people.Customer customer) {
+    private void optionForFind(model.people.Customer customer) throws IOException {
         int choice = 0;
         System.out.println("-----OPTION 2------" +
                 "\n1 -> Find by name" +
@@ -140,7 +143,7 @@ public class Controller {
         }
     }
 
-    public void optionOfCus(model.people.Customer customer, Product product) {
+    public void optionOfCus(model.people.Customer customer, Product product) throws IOException {
         int choice;
         System.out.println("-----OPTION 1-----" +
                 "\n1 -> Add to cart" +
@@ -207,7 +210,7 @@ public class Controller {
         return newCustomer;
     }
 
-    public void menu(Customer customer) {
+    public void menu(Customer customer) throws IOException {
         int choice;
         do {
             System.out.println("-----MENU-----" +

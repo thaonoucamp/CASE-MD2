@@ -3,9 +3,10 @@ package model.product;
 import model.people.Customer;
 import model.people.Staff;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Bill {
+public class Bill implements Serializable {
     private static Bill INSTANCE = new Bill();
 
     public static Bill getBill() {

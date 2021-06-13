@@ -1,6 +1,8 @@
 package model.product;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     private String phone;
     private String password;
 

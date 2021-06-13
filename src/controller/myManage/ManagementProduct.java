@@ -1,18 +1,24 @@
 package controller.myManage;
 
-import model.people.Customer;
+import controller.myFile.FileIO;
 import model.product.Product;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ManagementProduct implements IManagement<Product> {
     transient Scanner sc = new Scanner(System.in);
     private List<Product> productList;
+    FileIO fileProduct = new FileIO();
 
     public ManagementProduct() {
-        productList = new ArrayList<>();
+        try {
+            productList = fileProduct.readByCSV(fileProduct.FILE_PRODUCT);
+        } catch (Exception e) {
+            productList = new ArrayList<>();
+        }
         productList.add(new Product("Iphone X", "Apple", 10));
-        productList.add(new Product("Galaxy Fold", "Sam sung",15));
+        productList.add(new Product("Galaxy Fold", "Sam sung", 15));
     }
 
     public List<Product> getProductList() {
@@ -46,18 +52,25 @@ public class ManagementProduct implements IManagement<Product> {
     }
 
     @Override
-    public void add(Product product) {
+    public void add(Product product) throws IOException {
         for (int i = 0; i < this.getProductList().size(); i++) {
             this.getProductList().add(product);
         }
+        fileProduct.writeByCSV(fileProduct.FILE_PRODUCT, this.getProductList());
     }
 
     @Override
-    public void edit(String name) {
+    public void edit(String name) throws IOException, ClassNotFoundException {
+        fileProduct.readByCSV(fileProduct.FILE_PRODUCT);
+
+        fileProduct.writeByCSV(fileProduct.FILE_PRODUCT, this.getProductList());
     }
 
     @Override
-    public void delete(String name) {
+    public void delete(String name) throws IOException, ClassNotFoundException {
+        fileProduct.readByCSV(fileProduct.FILE_PRODUCT);
+
+        fileProduct.writeByCSV(fileProduct.FILE_PRODUCT, this.getProductList());
     }
 
     @Override
@@ -67,9 +80,5 @@ public class ManagementProduct implements IManagement<Product> {
             Product product = (Product) iterator.next();
             System.out.println(product);
         }
-    }
-
-    public void menu() {
-
     }
 }

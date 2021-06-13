@@ -1,6 +1,8 @@
 package model.product;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private static Product INSTANCE = new Product();
 
     public static Product getProduct() {

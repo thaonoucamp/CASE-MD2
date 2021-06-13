@@ -1,10 +1,10 @@
 package controller.myManage;
 
+import controller.myFile.FileIO;
 import model.people.Customer;
 import model.product.Account;
-import model.product.Cart;
-import model.product.Product;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,13 +12,18 @@ import java.util.Scanner;
 public class ManagementCus implements IManagement<Customer> {
     transient Scanner sc = new Scanner(System.in);
     private List<Customer> customerList;
+    FileIO fileCus = new FileIO();
 
     public List<Customer> getCustomerList() {
         return customerList;
     }
 
     public ManagementCus() {
-        customerList = new ArrayList<>();
+        try {
+            customerList = fileCus.readForCus(fileCus.FILE_PRODUCT);
+        } catch (Exception e) {
+            customerList = new ArrayList<>();
+        }
     }
 
     public Customer inputInfoCus() {
@@ -91,18 +96,25 @@ public class ManagementCus implements IManagement<Customer> {
     }
 
     @Override
-    public void add(Customer customer) {
+    public void add(Customer customer) throws IOException {
         this.getCustomerList().add(customer);
         System.out.println("To registration has was the success !");
+        fileCus.writeForCus(fileCus.FILE_CUSTOMER, this.getCustomerList());
     }
 
     @Override
-    public void edit(String name) {
+    public void edit(String name) throws IOException, ClassNotFoundException {
+        fileCus.readForCus(fileCus.FILE_CUSTOMER);
+
+        fileCus.writeForCus(fileCus.FILE_CUSTOMER, this.getCustomerList());
 
     }
 
     @Override
-    public void delete(String name) {
+    public void delete(String name) throws IOException, ClassNotFoundException {
+        fileCus.readForCus(fileCus.FILE_CUSTOMER);
+
+        fileCus.writeForCus(fileCus.FILE_CUSTOMER, this.getCustomerList());
 
     }
 
