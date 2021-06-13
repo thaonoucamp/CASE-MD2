@@ -1,23 +1,23 @@
 package model.product;
 
 public class Account {
-    private String account;
+    private String phone;
     private String password;
 
     public Account() {
     }
 
-    public Account(String account, String password) {
-        this.account = account;
+    public Account(String phone, String password) {
+        this.phone = phone;
         this.password = password;
     }
 
-    public String getAccount() {
-        return account;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {

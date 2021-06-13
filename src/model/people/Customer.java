@@ -1,53 +1,54 @@
 package model.people;
 
-import model.product.Product;
-
-import java.util.ArrayList;
-import java.util.List;
+import model.product.Account;
+import model.product.Cart;
 
 public class Customer extends Person {
     private static Customer INSTANCE = new Customer();
 
     private Customer() {
-        this.wallet = 1000000000;
+        wallet = 100;
+        cart = null;
     }
 
-    public static Customer getInstance() {
+    public static Customer getCustomer() {
         return INSTANCE;
     }
 
-    private String idCus;
-    private String telephone;
     private String email;
     private long wallet;
+    private Account account;
+    private Cart cart;
 
-    public Customer(String idCus, String email, long wallet) {
-        this.idCus = idCus;
+    public Customer(String email, long wallet, Account account, Cart cart) {
         this.email = email;
         this.wallet = wallet;
+        this.account = account;
+        this.cart = cart;
     }
 
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public Customer(String idCus, String telephone, String email, long wallet) {
-        this.idCus = idCus;
-        this.telephone = telephone;
-        this.email = email;
-        this.wallet = wallet;
-    }
-
-    public Customer(String name, String age, String gender, String address, String idCus, String telephone, String email, long wallet) {
+    public Customer(String name, String age, String gender, String address, String email, long wallet, Account account, Cart cart) {
         super(name, age, gender, address);
-        this.idCus = idCus;
-        this.telephone = telephone;
         this.email = email;
         this.wallet = wallet;
+        this.account = account;
+        this.cart = cart;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public String getEmail() {
@@ -56,14 +57,6 @@ public class Customer extends Person {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getIdCus() {
-        return idCus;
-    }
-
-    public void setIdCus(String idCus) {
-        this.idCus = idCus;
     }
 
     public long getWallet() {
@@ -76,11 +69,9 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        return "Customer{" + super.toString() +
-                ", idCus='" + idCus + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
+        return "Customer{" + super.getName() +
                 ", wallet=" + wallet +
+                ", cart=" + cart +
                 '}';
     }
 }

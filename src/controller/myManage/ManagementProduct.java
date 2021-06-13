@@ -21,37 +21,35 @@ public class ManagementProduct implements IManagement<Product> {
     public Product input() {
         Product newProduct = Product.getProduct();
 
-        System.out.println("Enter the name by form [Iphone 12 Pro Max]");
-        String name = sc.nextLine();
         while (true) {
+            System.out.println("Enter the name by form [Iphone 12 Pro Max]");
+            String name = sc.nextLine();
             if (Validate.validate(Validate.REGEX_NAME, name)) {
                 newProduct.setName(name);
                 break;
-            } else {
-                System.err.println("Enter be right with regex");
             }
+            System.err.println("Enter be right with regex");
         }
 
-        System.out.println("Enter the price by form[10.000.000]");
-        String price = sc.nextLine();
         while (true) {
+            System.out.println("Enter the price by form[10.000.000]");
+            String price = sc.nextLine();
             if (Validate.validate(Validate.REGEX_PRICE, price)) {
                 newProduct.setPrice(Long.parseLong(price));
                 break;
-            } else {
-                System.err.println("Enter be right with regex");
             }
+            System.err.println("Enter be right with regex");
         }
 
-        System.out.println("Enter the firm by form [Apple]");
-        String firm = sc.nextLine();
+
         while (true) {
+            System.out.println("Enter the firm by form [Apple]");
+            String firm = sc.nextLine();
             if (Validate.validate(Validate.REGEX_ADDRESS, firm)) {
                 newProduct.setFirm(firm);
                 break;
-            } else {
-                System.err.println("Enter be right with regex");
             }
+            System.err.println("Enter be right with regex");
         }
         return null;
     }

@@ -17,7 +17,6 @@ public class Bill {
     private int idBill;
     private Customer customer;
     private Product product;
-    private Date date;
     private int quantity;
     private long total;
 
@@ -25,7 +24,6 @@ public class Bill {
         this.idBill = idBill;
         this.customer = customer;
         this.product = product;
-        this.date = date;
         this.quantity = quantity;
         this.total = total;
     }
@@ -36,14 +34,6 @@ public class Bill {
 
     public void setIdBill(int idBill) {
         this.idBill = idBill;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public Product getProduct() {
@@ -74,7 +64,6 @@ public class Bill {
     public String toString() {
         return "Bill{" +
                 "idBill=" + idBill +
-                ", date=" + date +
                 ", product=" + product +
                 ", customer=" + customer +
                 ", total=" + total +

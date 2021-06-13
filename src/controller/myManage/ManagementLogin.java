@@ -1,17 +1,22 @@
 package controller.myManage;
 
+import model.people.Customer;
 import model.product.Account;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagementLogin {
+public class ManagementLogin implements IManagement<Customer> {
     transient Scanner sc = new Scanner(System.in);
-    String[] admin = {"admin", "123456"};
-    private List<Account> accountList;
+    private String[] admin = {"admin", "123456"};
+    private List<Customer> accountList;
 
-    public List<Account> getAccountList() {
+    public String[] getAdmin() {
+        return admin;
+    }
+
+    public List<Customer> getAccountList() {
         return accountList;
     }
 
@@ -19,49 +24,92 @@ public class ManagementLogin {
         accountList = new ArrayList<>();
     }
 
-    public void checkAccountStaff() {
-        boolean check = true;
-        do {
-            String[] login = new String[2];
-            System.out.print("Enter the account : ");
-            String ac = sc.nextLine();
-            System.out.print("Enter the password : ");
-            String pw = sc.nextLine();
+    public Customer inputInfoCus() {
+        Customer newCus = Customer.getCustomer();
 
-            login[0] = ac;
-            login[1] = pw;
-
-            for (int i = 0; i < login.length; i++) {
-                if (login[i].equalsIgnoreCase(this.admin[i])) {
-                    check = false;
-                } else {
-                    System.err.println("The account or password is not right");
-                }
+        while (true) {
+            System.out.println("Enter the name by form [Nguyen Phu Trong]");
+            String name = sc.nextLine();
+            if (Validate.validate(Validate.REGEX_NAME, name)) {
+                newCus.setName(name);
+                break;
             }
-        } while (check);
-    }
-
-    public Account registration() {
-        Account newAccount = new Account();
-
-        System.out.println("Enter the account");
-        newAccount.setAccount(sc.nextLine());
-
-        System.out.println("Enter the password");
-        newAccount.setPassword(sc.nextLine());
-
-        return newAccount;
-    }
-
-    public boolean checkAccountCus(Account account) {
-        account = registration();
-        for (int i = 0; i <= this.getAccountList().size(); i++) {
-            if (!account.getAccount().equalsIgnoreCase(this.getAccountList().get(i).getAccount())) {
-                return true;
-            } else {
-                return false;
-            }
+            System.err.println("Enter be right with regex");
         }
-        return false;
+
+        while (true) {
+            System.out.println("Enter the birthday by form[31-12-2021]");
+            String born = sc.nextLine();
+            if (Validate.validate(Validate.REGEX_BORN, born)) {
+                newCus.setAge(born);
+                break;
+            }
+            System.err.println("Enter be right with regex");
+        }
+
+        while (true) {
+            System.out.println("Enter the gender by form [nam -> 9, nu -> 0]");
+            String gen = sc.nextLine();
+            if (Validate.validate(Validate.REGEX_GEN, gen)) {
+                newCus.setGender(gen);
+                break;
+            }
+            System.err.println("Enter be right with regex");
+        }
+
+        while (true) {
+            System.out.println("Enter the email by form [abc@gamil.com]");
+            String email = sc.nextLine();
+            if (Validate.validate(Validate.REGEX_EMAIL, email)) {
+                newCus.setEmail(email);
+                break;
+            }
+            System.err.println("Enter be right with regex");
+        }
+
+        Account account = new Account();
+        while (true) {
+            System.out.println("Enter the telephone by form [0989.898.989]");
+            String telephone = sc.nextLine();
+            if (Validate.validate(Validate.REGEX_TELEPHONE, telephone)) {
+                account.setPhone(telephone);
+                break;
+            }
+            System.err.println("Enter be right with regex");
+        }
+
+        while (true) {
+            System.out.println("Enter the password by form [123456]");
+            String pass = sc.nextLine();
+            if (Validate.validate(Validate.REGEX_PASSWORD, pass)) {
+                account.setPassword(pass);
+                break;
+            }
+            System.err.println("Enter be right with regex");
+        }
+
+        newCus.setAccount(account);
+
+        return newCus;
+    }
+
+    @Override
+    public void add(Customer customer) {
+
+    }
+
+    @Override
+    public void edit(String name) {
+
+    }
+
+    @Override
+    public void delete(String name) {
+
+    }
+
+    @Override
+    public void show() {
+
     }
 }

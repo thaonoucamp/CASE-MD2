@@ -18,48 +18,45 @@ public class ManagementStaff implements IManagement<Staff> {
     public Staff input() {
         Staff newStaff = Staff.getStaff();
 
-        System.out.println("Enter the name by form [Nguyen Phu Trong]");
-        String name = sc.nextLine();
         while (true) {
+            System.out.println("Enter the name by form [Nguyen Phu Trong]");
+            String name = sc.nextLine();
             if (Validate.validate(Validate.REGEX_NAME, name)) {
                 newStaff.setName(name);
                 break;
-            } else {
-                System.err.println("Enter be right with regex");
             }
+            System.err.println("Enter be right with regex");
+
         }
 
-        System.out.println("Enter the birthday by form[31-12-2021]");
-        String born = sc.nextLine();
         while (true) {
+            System.out.println("Enter the birthday by form[31-12-2021]");
+            String born = sc.nextLine();
             if (Validate.validate(Validate.REGEX_BORN, born)) {
                 newStaff.setAge(born);
                 break;
-            } else {
-                System.err.println("Enter be right with regex");
             }
+            System.err.println("Enter be right with regex");
         }
 
-        System.out.println("Enter the gender by form [nam -> 9, nu -> 0]");
-        String gen = sc.nextLine();
         while (true) {
+            System.out.println("Enter the gender by form [nam -> 9, nu -> 0]");
+            String gen = sc.nextLine();
             if (Validate.validate(Validate.REGEX_GEN, gen)) {
                 newStaff.setGender(gen);
                 break;
-            } else {
-                System.err.println("Enter be right with regex");
             }
+            System.err.println("Enter be right with regex");
         }
 
-        System.out.println("Enter the email by form [abc@gamil.com]");
-        String email = sc.nextLine();
         while (true) {
+            System.out.println("Enter the email by form [abc@gamil.com]");
+            String email = sc.nextLine();
             if (Validate.validate(Validate.REGEX_EMAIL, email)) {
                 newStaff.setEmail(email);
                 break;
-            } else {
-                System.err.println("Enter be right with regex");
             }
+            System.err.println("Enter be right with regex");
         }
         return newStaff;
     }
