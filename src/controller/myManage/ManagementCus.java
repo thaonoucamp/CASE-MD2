@@ -69,6 +69,7 @@ public class ManagementCus implements IManagement<Customer> {
             System.err.println("Enter be right with regex");
         }
 
+        System.out.println("Enter the account(Note -> your telephone is your account name)");
         Account account = new Account();
         while (true) {
             System.out.println("Enter the telephone by form [0989.898.989]");
@@ -104,17 +105,17 @@ public class ManagementCus implements IManagement<Customer> {
 
     @Override
     public void edit(String name) throws IOException, ClassNotFoundException {
-        fileCus.readForCus(fileCus.FILE_CUSTOMER);
 
         fileCus.writeForCus(fileCus.FILE_CUSTOMER, this.getCustomerList());
+        fileCus.readForCus(fileCus.FILE_CUSTOMER);
 
     }
 
     @Override
     public void delete(String name) throws IOException, ClassNotFoundException {
-        fileCus.readForCus(fileCus.FILE_CUSTOMER);
 
         fileCus.writeForCus(fileCus.FILE_CUSTOMER, this.getCustomerList());
+        fileCus.readForCus(fileCus.FILE_CUSTOMER);
 
     }
 

@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart implements Serializable {
-    private List<Product> cart;
+    private List<Product> products;
 
     public Cart() {
-        cart = new ArrayList<>();
+        products = new ArrayList<>();
     }
 
-    public List<Product> getCart() {
-        return cart;
+    public List<Product> getProducts() {
+        return products;
     }
+
+
 }

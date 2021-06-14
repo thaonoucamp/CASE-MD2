@@ -18,7 +18,9 @@ public class ManagementProduct implements IManagement<Product> {
             productList = new ArrayList<>();
         }
         productList.add(new Product("Iphone X", "Apple", 10));
+        productList.add(new Product("Iphone 12", "Apple", 20));
         productList.add(new Product("Galaxy Fold", "Sam sung", 15));
+        productList.add(new Product("Galaxy Note", "Sam sung", 10));
     }
 
     public List<Product> getProductList() {

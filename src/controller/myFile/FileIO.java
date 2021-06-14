@@ -17,7 +17,12 @@ public class FileIO {
     public void writeByCSV(String filePath, List<Product> list) throws IOException {
         FileWriter fileWriter = new FileWriter(filePath);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        bufferedWriter.write(list.toString());
+        String str = "";
+
+        for (int i = 0; i < list.size(); i++) {
+            str += list.get(i).getName() + "," + list.get(i).getFirm() + "," + list.get(i).getPrice() + "\n";
+        }
+        bufferedWriter.write(str);
         bufferedWriter.flush();
         bufferedWriter.close();
         fileWriter.close();
@@ -50,13 +55,14 @@ public class FileIO {
     }
 
     public ArrayList<Customer> readForCus(String content) throws IOException, ClassNotFoundException {
-        ArrayList<Customer> list = new ArrayList<>();
+        List<Customer> list;
         FileInputStream fi = new FileInputStream(content);
         ObjectInputStream oi = new ObjectInputStream(fi);
+
         list = (ArrayList<Customer>) oi.readObject();
         oi.close();
         fi.close();
-        return list;
+        return (ArrayList<Customer>) list;
     }
 
     public void writeForBill(String filePath, List<Bill> list) throws IOException {

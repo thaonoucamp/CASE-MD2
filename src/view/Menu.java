@@ -7,9 +7,8 @@ import java.io.IOException;
 
 public class Menu {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Controller controller = new Controller();
-        Customer customer = Customer.getCustomer();
-        controller.menu(customer);
+        controller.menu();
     }
 }

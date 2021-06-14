@@ -15,10 +15,23 @@ public class ManagementBill implements IManagement<Bill> {
         billList = new ArrayList<>();
     }
 
+    public List<Bill> getBillList() {
+        return billList;
+    }
+
+    public void setBillList(List<Bill> billList) {
+        this.billList = billList;
+    }
+
+    Bill input() {
+        Bill newBill = Bill.getBill();
+        // code here;
+        return newBill;
+    }
 
     @Override
     public void add(Bill bill) {
-
+        this.getBillList().add(input());
     }
 
     @Override

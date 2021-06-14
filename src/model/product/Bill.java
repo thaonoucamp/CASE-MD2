@@ -4,7 +4,8 @@ import model.people.Customer;
 import model.people.Staff;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bill implements Serializable {
     private static Bill INSTANCE = new Bill();
@@ -14,50 +15,25 @@ public class Bill implements Serializable {
     }
 
     private Bill() {
-        idBill++;
+        products = new ArrayList<>();
     }
 
-    private int idBill = 0;
     private Customer customer;
-    private Product product;
-    private Staff staff;
-    private int quantity;
+    private List<Product> products;
     private long total;
 
-    public Bill(Customer customer, Product product, Staff staff, int quantity, long total) {
+    public Bill(Customer customer, List<Product> products, long total) {
         this.customer = customer;
-        this.product = product;
-        this.staff = staff;
-        this.quantity = quantity;
+        this.products = products;
         this.total = total;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public Product getProducts() {
+        return (Product) products;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getIdBill() {
-        return idBill;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = (List<Product>) products;
     }
 
     public Customer getCustomer() {
@@ -79,12 +55,9 @@ public class Bill implements Serializable {
     @Override
     public String toString() {
         return "Bill{" +
-                "idBill=" + idBill +
-                ", product=" + product +
+                ", product=" + products.toString() +
                 ", customer=" + customer +
-                ", quantity=" + quantity +
                 ", total=" + total +
-                ", staff=" + staff +
                 '}';
     }
 }

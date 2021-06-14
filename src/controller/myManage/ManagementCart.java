@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ManagementCart implements IManagement<Product> {
-   private List<Product> cart;
-   FileIO fileCart = new FileIO();
+    private List<Product> cart;
+    FileIO fileCart = new FileIO();
 
     public List<Product> getCart() {
         return cart;
@@ -24,12 +24,11 @@ public class ManagementCart implements IManagement<Product> {
         }
     }
 
-
     public void add(Product product) throws IOException {
         this.getCart().add(product);
         System.out.println("The product has added the Cart");
-        show();
         fileCart.writeByCSV(fileCart.FILE_CART, this.getCart());
+        show();
     }
 
     @Override
@@ -38,26 +37,26 @@ public class ManagementCart implements IManagement<Product> {
 
 
         fileCart.writeByCSV(fileCart.FILE_CART, this.getCart());
-
+        show();
     }
 
     @Override
     public void delete(String name) throws IOException, ClassNotFoundException {
         fileCart.readByCSV(fileCart.FILE_CART);
-        int index = 0;
         for (int i = 0; i < this.getCart().size(); i++) {
-            this.getCart().remove(index);
-            System.out.println("Paid success...Thanks !");
+            if (name.equalsIgnoreCase(this.getCart().get(i).getName()))
+                this.getCart().remove(i);
+            System.out.println("Remove success...Thanks !");
             break;
         }
         fileCart.writeByCSV(fileCart.FILE_CART, this.getCart());
-
+        show();
     }
 
     @Override
     public void show() {
         Iterator iterator = this.cart.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
     }
